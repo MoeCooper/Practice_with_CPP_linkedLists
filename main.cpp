@@ -13,7 +13,7 @@ void create(int A[], int n){
     last = first; // last pointer points to same element A[0], just as first is. 
 
     for(int i = 1; i < n; i++){ // this starts from 1 because zeroth element is already initiated
-        t = new Node(); // created new node 
+        t = new Node(); // we created new node 
         t->data = A[i]; // loops through A[] and gives value to each new node's data
         t->next = NULL; // no next node yet, so assignment of NULL is given
         last->next = t; // takes our newly created node and assigns to next of last node. 
