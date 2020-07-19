@@ -35,7 +35,7 @@ void recursionValues(struct Node *p){
     }
 }
 
-int count(struct Node *p){
+int countIteratively(struct Node *p){
     int count = 0;
     while(p!=NULL){
         count++;
@@ -44,12 +44,62 @@ int count(struct Node *p){
     return count;
 }
 
+int countRecursively(struct Node *p){
+    if(p!=NULL){
+       return countRecursively(p->next) + 1;
+    } else {
+        return 0;
+    }
+}
+
+int sumIteratively(struct Node *p){
+    int sum = 0;
+    while(p != NULL){
+        sum += p->data;
+        p = p->next;
+    }
+    return sum;
+}
+
+int sumRecursively(struct Node *p){
+    if(p==NULL){
+        return 0;
+    } else {
+        return sumRecursively(p->next) + p->data;
+    }
+}
+
+int maxElement(struct Node *p){
+    int max = p->data;
+    while(p!=NULL){
+        if(p->data > max){
+            max = p->data;
+        }
+        p = p->next;
+    }
+    return max;
+}
+
+int maxElementRecursively(struct Node *p){
+    int max = p->data;
+    if(p!=NULL){
+        return 0;
+    }
+    max = maxElementRecursively(p->next);
+    return max;
+}
+
 int main() {
-    int arr[] = {3,4,5,6,12,9};
-    create(arr, 6);
+    int arr[] = {0,3,217,5,46,12,29};
+    create(arr, 7);
     recursionValues(first);
     std::cout << "\n";
     recursionRevValues(first);
     std::cout << "\n";
-    std::cout << "This Linked List has " << count(first) << " nodes." << std::endl;
+    std::cout << "This function counts the nodes in the LL iteratively and has " << countIteratively(first) << " nodes.\n";
+    std::cout << "This function counts the nodes in the LL recursively and has " << countRecursively(first) << " nodes.\n\n";
+    std::cout << "This function adds all the nodes' data iteratively.\nTotal values are " << sumIteratively(first) << "\n";
+    std::cout << "This function adds all the nodes' data recursively.\nTotal values are " << sumRecursively(first) << "\n";
+    std::cout << "The maximum value in the LL is " << maxElement(first) << "\n";
+    std::cout << maxElementRecursively(first);
 }
